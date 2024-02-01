@@ -11,3 +11,4 @@
 abstract class NewsStates{}
 class NewsinitialState extends NewsStates{}
 class NewsBottomNavState extends NewsStates{}
+class ChangeScreensState extends NewsStates{}

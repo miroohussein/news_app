@@ -121,10 +121,52 @@
 //   }
 // }
 import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/module/business/business_screen.dart';
+import 'package:news_app/module/scince/scince_Screen.dart';
+import 'package:news_app/module/settings/settings_screens.dart';
+import 'package:news_app/module/sports/sports_screen.dart';
 import 'package:news_app/shared/cubit/states.dart';
 
 class NewsCubit extends Cubit<NewsStates>{
   NewsCubit() : super(NewsinitialState());
   static NewsCubit get(context)=> BlocProvider.of(context);
+
+  int currentindex =0;
+  List<BottomNavigationBarItem> bottomItem=[
+     BottomNavigationBarItem(
+       label: 'Business',
+       icon: Icon(
+         Icons.business,
+     ),),
+     BottomNavigationBarItem(
+       label: 'Sports',
+       icon: Icon(
+         Icons.sports_baseball,
+     ),),
+     BottomNavigationBarItem(
+       label: 'Scince',
+       icon: Icon(
+         Icons.science,
+
+     ),),
+    BottomNavigationBarItem(
+      label: 'Settings',
+      icon: Icon(
+        Icons.settings,
+
+      ),),
+  ];
+  List<Widget> screens =[
+    BusinessScreen(),
+    SpotrsScreen(),
+    ScinceScreen(),
+    SettingsScreen(),
+  ];
+  void changeBottomNavBar(int index){
+    currentindex = index;
+    emit(NewsBottomNavState());
+  }
 }

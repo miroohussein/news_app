@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class BusinessScreen extends StatelessWidget {
+class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        color: Colors.white,
+    return Container(
+      child: Center(
         child: Text(
-          'Business Screen',
+          'Settings Screen',
           style: TextStyle(
+            color: Colors.black12,
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
           ),
