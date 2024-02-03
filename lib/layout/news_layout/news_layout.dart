@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/shared/cubit/cubit.dart';
 import 'package:news_app/shared/cubit/states.dart';
+import 'package:news_app/shared/network/dio_helper.dart';
 
 class NewsLayout extends StatelessWidget {
   const NewsLayout({super.key});
@@ -43,7 +44,18 @@ class NewsLayout extends StatelessWidget {
                 color: Colors.black
               ),
               child: FloatingActionButton(
-                onPressed: (){},
+                onPressed: (){
+                  DioHelper.gtData(url:'v2/top-headlines',
+                      query: {
+                    'country':'eg',
+                    'category':'business',
+                    'apiKey':'bb828cd18aeb42f5afb50e816a05215f',
+                      },).then((value) {
+                        print(value.toString());
+                  }).catchError((error){
+                    print(error.toString());
+                  });
+                },
                 child: Icon(
                   Icons.add
                 ),

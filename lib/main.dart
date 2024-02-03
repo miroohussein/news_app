@@ -5,9 +5,11 @@ import 'package:news_app/layout/home/home_screen.dart';
 import 'package:news_app/layout/news_layout/news_layout.dart';
 import 'package:news_app/module/business/business_screen.dart';
 import 'package:news_app/shared/bloc_observer/bloc_observer.dart';
+import 'package:news_app/shared/network/dio_helper.dart';
 
 void main() {
   Bloc.observer = MyBlocObserver();
+  DioHelper.init();
   runApp(MyApp());
 }
 
