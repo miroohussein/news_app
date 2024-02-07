@@ -10,7 +10,7 @@ class NewsLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => NewsCubit(),
+      create: (BuildContext context) => NewsCubit()..getBusiness()..getSports()..getScience(),
       child: BlocConsumer<NewsCubit, NewsStates>(
         builder: (BuildContext context, state) {
           var cubit = NewsCubit.get(context);
@@ -36,31 +36,22 @@ class NewsLayout extends StatelessWidget {
 
             ),
             body: cubit.screens[cubit.currentindex],
-            floatingActionButton: Container(
-              width: 50.0,
-              height: 50.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Colors.black
-              ),
-              child: FloatingActionButton(
-                onPressed: (){
-                  DioHelper.gtData(url:'v2/top-headlines',
-                      query: {
-                    'country':'eg',
-                    'category':'business',
-                    'apiKey':'bb828cd18aeb42f5afb50e816a05215f',
-                      },).then((value) {
-                        print(value.toString());
-                  }).catchError((error){
-                    print(error.toString());
-                  });
-                },
-                child: Icon(
-                  Icons.add
-                ),
-              ),
-            ),
+            // floatingActionButton: Container(
+            //   width: 50.0,
+            //   height: 50.0,
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(10.0),
+            //     color: Colors.black
+            //   ),
+            //   child: FloatingActionButton(
+            //     onPressed: (){
+            //
+            //     },
+            //     child: Icon(
+            //       Icons.add
+            //     ),
+            //   ),
+            // ),
           );
         },
         listener: (BuildContext context, Object? state) {},
