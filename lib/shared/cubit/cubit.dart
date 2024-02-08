@@ -120,6 +120,8 @@
 //     emit(AppChangeBottomSheetState());
 //   }
 // }
+
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -130,6 +132,7 @@ import 'package:news_app/module/settings/settings_screens.dart';
 import 'package:news_app/module/sports/sports_screen.dart';
 import 'package:news_app/shared/cubit/states.dart';
 
+import '../components/component.dart';
 import '../network/dio_helper.dart';
 
 class NewsCubit extends Cubit<NewsStates>{
@@ -175,6 +178,8 @@ class NewsCubit extends Cubit<NewsStates>{
   List<dynamic> business=[];
   List<dynamic> sports=[];
   List<dynamic> science=[];
+
+
 
   void getBusiness(){
     emit(NewsGetBusinessLoadingState());
@@ -226,5 +231,16 @@ class NewsCubit extends Cubit<NewsStates>{
       print(error.toString());
       emit(NewsGetScienceErrorState(error.toString()));
     });
+  }
+}
+class AppCubit extends Cubit<AppStates>{
+  AppCubit():super(AppInitialState() );
+  static AppCubit get(context)=>BlocProvider.of(context);
+
+  bool isDark = false;
+  var icon= Icon(Icons.brightness_2_outlined);
+  void changeAppTheme(){
+    isDark = !isDark;
+    emit(AppThemeChangeState());
   }
 }

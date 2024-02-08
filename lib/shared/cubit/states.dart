@@ -1,5 +1,6 @@
-// abstract class AppStates{}
-// class AppInitialState extends AppStates{}
+ abstract class AppStates{}
+class AppInitialState extends AppStates{}
+ class AppThemeChangeState extends AppStates{}
 // class AppChangeBottomNavBarState extends AppStates{}
 // class AppCreateDatabaseState extends AppStates{}
 // class AppGetDatabaseState extends AppStates{}
@@ -13,6 +14,7 @@ class NewsinitialState extends NewsStates{}
 class NewsBottomNavState extends NewsStates{}
 class ChangeScreensState extends NewsStates{}
 class NewsGetBusinessSuccessState extends NewsStates{}
+
 class NewsGetBusinessErrorState extends NewsStates{
   final String error;
   NewsGetBusinessErrorState(this.error);

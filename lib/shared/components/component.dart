@@ -133,8 +133,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/shared/cubit/cubit.dart';
 
-Widget buildArticleItem(article){
+Widget buildArticleItem(article , context){
   return Padding(
     padding: const EdgeInsets.all(20.0),
     child: Row(
@@ -163,11 +164,7 @@ Widget buildArticleItem(article){
               children: [
                 Text("${article['title']}",
                   maxLines: 3,
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight:FontWeight.w600 ,
-                    overflow: TextOverflow.ellipsis,
-                  ),),
+                  style: Theme.of(context).textTheme.bodyText1 ,),
                 Text('${article['publishedAt']}',
                   style: TextStyle(
                     fontSize: 18.0,
@@ -183,12 +180,13 @@ Widget buildArticleItem(article){
   );
 }
 
-Widget separatedLine(){
+Widget separatedLine(context){
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+    padding: const EdgeInsets.symmetric(horizontal: 18.0),
     child: Container(
-        color: Colors.black12,
+        color: AppCubit.get(context).isDark? Colors.grey[300]:Colors.grey[800],
         height: 2.0,
         width: double.infinity),
   );
 }
+

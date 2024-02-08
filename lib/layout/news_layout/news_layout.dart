@@ -4,6 +4,8 @@ import 'package:news_app/shared/cubit/cubit.dart';
 import 'package:news_app/shared/cubit/states.dart';
 import 'package:news_app/shared/network/dio_helper.dart';
 
+import '../../shared/components/component.dart';
+
 class NewsLayout extends StatelessWidget {
   const NewsLayout({super.key});
 
@@ -13,12 +15,19 @@ class NewsLayout extends StatelessWidget {
       create: (BuildContext context) => NewsCubit()..getBusiness()..getSports()..getScience(),
       child: BlocConsumer<NewsCubit, NewsStates>(
         builder: (BuildContext context, state) {
+
           var cubit = NewsCubit.get(context);
           return Scaffold(
             appBar: AppBar(
               actions: [
                 IconButton(onPressed: (){},
                     icon:Icon(Icons.search)
+                ),
+                IconButton(
+                  icon: AppCubit.get(context).icon,
+                  onPressed: (){
+                   AppCubit.get(context).changeAppTheme();
+                    },
                 ),
               ],
               title: Text('JAREEDAH'),

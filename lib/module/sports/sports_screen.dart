@@ -16,10 +16,10 @@ class SpotrsScreen extends StatelessWidget {
               ? ListView.separated(
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) {
-                return buildArticleItem(list[index]);
+                return buildArticleItem(list[index],context);
               },
               separatorBuilder: (context, index) {
-                return separatedLine();
+                return separatedLine(context);
               },
               itemCount: NewsCubit.get(context).sports.length)
               : Center(
