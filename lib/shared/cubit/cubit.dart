@@ -121,7 +121,6 @@
 //   }
 // }
 
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -131,116 +130,154 @@ import 'package:news_app/module/scince/scince_Screen.dart';
 import 'package:news_app/module/settings/settings_screens.dart';
 import 'package:news_app/module/sports/sports_screen.dart';
 import 'package:news_app/shared/cubit/states.dart';
+import 'package:news_app/shared/network/cache_helper.dart';
 
 import '../components/component.dart';
 import '../network/dio_helper.dart';
 
-class NewsCubit extends Cubit<NewsStates>{
+class NewsCubit extends Cubit<NewsStates> {
   NewsCubit() : super(NewsinitialState());
-  static NewsCubit get(context)=> BlocProvider.of(context);
 
-  int currentindex =0;
-  List<BottomNavigationBarItem> bottomItem=[
-     BottomNavigationBarItem(
-       label: 'Business',
-       icon: Icon(
-         Icons.business,
-     ),),
-     BottomNavigationBarItem(
-       label: 'Sports',
-       icon: Icon(
-         Icons.sports_baseball,
-     ),),
-     BottomNavigationBarItem(
-       label: 'Scince',
-       icon: Icon(
-         Icons.science,
+  static NewsCubit get(context) => BlocProvider.of(context);
 
-     ),),
+  int currentindex = 0;
+  List<BottomNavigationBarItem> bottomItem = [
+    BottomNavigationBarItem(
+      label: 'Business',
+      icon: Icon(
+        Icons.business,
+      ),
+    ),
+    BottomNavigationBarItem(
+      label: 'Sports',
+      icon: Icon(
+        Icons.sports_baseball,
+      ),
+    ),
+    BottomNavigationBarItem(
+      label: 'Scince',
+      icon: Icon(
+        Icons.science,
+      ),
+    ),
     BottomNavigationBarItem(
       label: 'Settings',
       icon: Icon(
         Icons.settings,
-
-      ),),
+      ),
+    ),
   ];
-  List<Widget> screens =[
+  List<Widget> screens = [
     BusinessScreen(),
     SpotrsScreen(),
     ScinceScreen(),
     SettingsScreen(),
   ];
-  void changeBottomNavBar(int index){
+
+  void changeBottomNavBar(int index) {
     currentindex = index;
     emit(NewsBottomNavState());
   }
 
-  List<dynamic> business=[];
-  List<dynamic> sports=[];
-  List<dynamic> science=[];
+  List<dynamic> business = [];
+  List<dynamic> sports = [];
+  List<dynamic> science = [];
+  List<dynamic> search = [];
+  List<dynamic> totalData = [];
 
-
-
-  void getBusiness(){
+  void getBusiness() {
     emit(NewsGetBusinessLoadingState());
-    DioHelper.gtData(url:'v2/top-headlines',
+    DioHelper.gtData(
+      url: 'v2/top-headlines',
       query: {
-        'country':'eg',
-        'category':'business',
-        'apiKey':'bb828cd18aeb42f5afb50e816a05215f',
-      },).then((value) {
+        'country': 'eg',
+        'category': 'business',
+        'apiKey': 'bb828cd18aeb42f5afb50e816a05215f',
+      },
+    ).then((value) {
       print(value.data['articles'][0]['title']);
-      business =value.data['articles'];
+      business = value.data['articles'];
       print(business[0]['title']);
       emit(NewsGetBusinessSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
       print(error.toString());
       emit(NewsGetBusinessErrorState(error.toString()));
     });
   }
-  void getSports(){
+
+  void getSports() {
     emit(NewsGetSportsLoadingState());
-    DioHelper.gtData(url:'v2/top-headlines',
+    DioHelper.gtData(
+      url: 'v2/top-headlines',
       query: {
-        'country':'eg',
-        'category':'sports',
-        'apiKey':'bb828cd18aeb42f5afb50e816a05215f',
-      },).then((value) {
+        'country': 'eg',
+        'category': 'sports',
+        'apiKey': 'bb828cd18aeb42f5afb50e816a05215f',
+      },
+    ).then((value) {
       print(value.data['articles'][0]['title']);
-      sports =value.data['articles'];
+      sports = value.data['articles'];
       print(sports[0]['title']);
       emit(NewsGetSportsSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
       print(error.toString());
       emit(NewsGetSportsErrorState(error.toString()));
     });
   }
-  void getScience(){
+
+  void getScience() {
     emit(NewsGetScienceLoadingState());
-    DioHelper.gtData(url:'v2/top-headlines',
+    DioHelper.gtData(
+      url: 'v2/top-headlines',
       query: {
-        'country':'eg',
-        'category':'science',
-        'apiKey':'bb828cd18aeb42f5afb50e816a05215f',
-      },).then((value) {
+        'country': 'eg',
+        'category': 'science',
+        'apiKey': 'bb828cd18aeb42f5afb50e816a05215f',
+      },
+    ).then((value) {
       print(value.data['articles'][0]['title']);
-      science =value.data['articles'];
+      science = value.data['articles'];
       print(science[0]['title']);
       emit(NewsGetScienceSuccessState());
-    }).catchError((error){
+    }).catchError((error) {
+      print(error.toString());
+      emit(NewsGetScienceErrorState(error.toString()));
+    });
+  }
+  void getAll() {
+    emit(NewsGetScienceLoadingState());
+    DioHelper.gtData(
+      url: 'v2/top-headlines',
+      query: {
+        'country': 'eg',
+        'apiKey': 'bb828cd18aeb42f5afb50e816a05215f',
+      },
+    ).then((value) {
+      print(value.data['articles'][0]['title']);
+      totalData = value.data['articles'];
+      print(totalData[0]['title']);
+      emit(NewsGetScienceSuccessState());
+    }).catchError((error) {
       print(error.toString());
       emit(NewsGetScienceErrorState(error.toString()));
     });
   }
 }
-class AppCubit extends Cubit<AppStates>{
-  AppCubit():super(AppInitialState() );
-  static AppCubit get(context)=>BlocProvider.of(context);
+
+class AppCubit extends Cubit<AppStates> {
+  AppCubit() : super(AppInitialState());
+
+  static AppCubit get(context) => BlocProvider.of(context);
 
   bool isDark = false;
-  var icon= Icon(Icons.brightness_2_outlined);
-  void changeAppTheme(){
-    isDark = !isDark;
-    emit(AppThemeChangeState());
+  var icon = Icon(Icons.brightness_2_outlined);
+
+  void changeAppTheme({bool? fromShared}) {
+    if (fromShared != null)
+      isDark = fromShared;
+    else
+      isDark = !isDark;
+    CacheHelper.putData(key: 'isDark', value: isDark)
+        .then((value) => emit(AppThemeChangeState()));
   }
 }

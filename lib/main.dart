@@ -8,19 +8,29 @@ import 'package:news_app/shared/bloc_observer/bloc_observer.dart';
 import 'package:news_app/shared/components/component.dart';
 import 'package:news_app/shared/cubit/cubit.dart';
 import 'package:news_app/shared/cubit/states.dart';
+import 'package:news_app/shared/network/cache_helper.dart';
 import 'package:news_app/shared/network/dio_helper.dart';
 
-void main() {
+void main() async {
+  // insure that every method in the main finished then start running
+  // the app 'because the main in origin doesn't Async'
+  WidgetsFlutterBinding.ensureInitialized();
+
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
-  runApp(MyApp());
+  await CacheHelper.ini();
+  bool? isDark = CacheHelper.getData(key: 'isDark');
+  runApp(MyApp(isDark));
 }
 
 class MyApp extends StatelessWidget {
+  final bool? isDark;
+  MyApp(this.isDark);
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => AppCubit(),
+      create: (BuildContext context) => AppCubit()..changeAppTheme( fromShared: isDark ),
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (BuildContext context, state) {
