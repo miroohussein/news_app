@@ -125,7 +125,11 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/layout/home/home_screen.dart';
+import 'package:news_app/module/bookmark/bookmark_screen.dart';
 import 'package:news_app/module/business/business_screen.dart';
+import 'package:news_app/module/category/category_screeen.dart';
+import 'package:news_app/module/profile/profile_screen.dart';
 import 'package:news_app/module/scince/scince_Screen.dart';
 import 'package:news_app/module/settings/settings_screens.dart';
 import 'package:news_app/module/sports/sports_screen.dart';
@@ -141,7 +145,7 @@ class NewsCubit extends Cubit<NewsStates> {
   static NewsCubit get(context) => BlocProvider.of(context);
 
   int currentindex = 0;
-  List<BottomNavigationBarItem> bottomItem = [
+/*  List<BottomNavigationBarItem> bottomItem = [
     BottomNavigationBarItem(
       label: 'Business',
       icon: Icon(
@@ -166,12 +170,45 @@ class NewsCubit extends Cubit<NewsStates> {
         Icons.settings,
       ),
     ),
+  ];*/
+
+  List<BottomNavigationBarItem> bottomItem = [
+    BottomNavigationBarItem(
+      label: 'Home',
+      icon: Icon(
+        Icons.home,
+      ),
+    ),
+    BottomNavigationBarItem(
+      label: 'Category',
+      icon: Icon(
+        Icons.category,
+      ),
+    ),
+    BottomNavigationBarItem(
+      label: 'Bookmark',
+      icon: Icon(
+        Icons.bookmarks_rounded,
+      ),
+    ),
+    BottomNavigationBarItem(
+      label: 'Profile',
+      icon: Icon(
+        Icons.person_3_rounded,
+      ),
+    ),
   ];
   List<Widget> screens = [
     BusinessScreen(),
-    SpotrsScreen(),
-    ScinceScreen(),
+    SportsScreen(),
+    ScienceScreen(),
     SettingsScreen(),
+  ];
+  List<Widget> mainScreens = [
+    NewsHomeScreen(),
+    Categoryscreen(),
+    BookmarkScreen(),
+    ProfileScreen(),
   ];
 
   void changeBottomNavBar(int index) {
@@ -244,8 +281,26 @@ class NewsCubit extends Cubit<NewsStates> {
       emit(NewsGetScienceErrorState(error.toString()));
     });
   }
+
+  void getSearch(String value) {
+    emit(NewsGetSearchLoadingState());
+   search = [];
+   DioHelper.gtData(url:'v2/everything', query: {
+     'q':'$value',
+     'apiKey':'bb828cd18aeb42f5afb50e816a05215f',
+   }).then((value) {
+     search = value.data['articles'];
+     print(search[0]['title']);
+
+     emit(NewsGetSearchSuccessState());
+   }).catchError((onError){
+     print(onError.toString());
+     emit(NewsGetSearchErrorState(onError));
+   });
+  }
+
   void getAll() {
-    emit(NewsGetScienceLoadingState());
+    emit(NewsGetTotalDataLoadingState());
     DioHelper.gtData(
       url: 'v2/top-headlines',
       query: {
@@ -256,10 +311,10 @@ class NewsCubit extends Cubit<NewsStates> {
       print(value.data['articles'][0]['title']);
       totalData = value.data['articles'];
       print(totalData[0]['title']);
-      emit(NewsGetScienceSuccessState());
+      emit(NewsGetTotalDataSuccessState());
     }).catchError((error) {
       print(error.toString());
-      emit(NewsGetScienceErrorState(error.toString()));
+      emit(NewsGetTotalDataErrorState(error.toString()));
     });
   }
 }

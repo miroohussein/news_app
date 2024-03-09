@@ -11,6 +11,8 @@ import 'package:news_app/shared/cubit/states.dart';
 import 'package:news_app/shared/network/cache_helper.dart';
 import 'package:news_app/shared/network/dio_helper.dart';
 
+import 'module/category/category_screeen.dart';
+
 void main() async {
   // insure that every method in the main finished then start running
   // the app 'because the main in origin doesn't Async'
@@ -29,8 +31,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => AppCubit()..changeAppTheme( fromShared: isDark ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context)=> NewsCubit()..getBusiness()..getScience()..getSports()..getAll()),
+        BlocProvider(create: (context)=>AppCubit()..changeAppTheme( fromShared: isDark )),
+      ],
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (BuildContext context, state) {
@@ -93,7 +98,8 @@ class MyApp extends StatelessWidget {
             themeMode:
                 AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
             debugShowCheckedModeBanner: false,
-            home: NewsLayout(),
+            home://Categoryscreen(),
+            NewsLayout(),
           );
         },
       ),

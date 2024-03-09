@@ -1,6 +1,6 @@
 //
 // https://newsapi.org/v2/top-headlines?country=eg&apiKey=bb828cd18aeb42f5afb50e816a05215f
-
+//https://newsapi.org/v2/everything?q=tesla&apiKey=bb828cd18aeb42f5afb50e816a05215f
 
 /*{
 "status": "ok",

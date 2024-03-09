@@ -5,7 +5,7 @@ import '../../shared/components/component.dart';
 import '../../shared/cubit/cubit.dart';
 import '../../shared/cubit/states.dart';
 
-class ScinceScreen extends StatelessWidget {
+class ScienceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -13,15 +13,34 @@ class ScinceScreen extends StatelessWidget {
         builder: (context, state) {
           var list = NewsCubit.get(context).science;
           return state is! NewsGetScienceLoadingState
-              ? ListView.separated(
-              physics: BouncingScrollPhysics(),
-              itemBuilder: (context, index) {
-                return buildArticleItem(list[index],context);
-              },
-              separatorBuilder: (context, index) {
-                return separatedLine(context);
-              },
-              itemCount: NewsCubit.get(context).science.length)
+              ? Scaffold(
+            appBar: AppBar(
+              title: Text(
+                'Science',
+              ),
+              actions: [
+                IconButton(
+                  icon: AppCubit.get(context).icon,
+                  onPressed: (){
+                    AppCubit.get(context).changeAppTheme();
+                  },
+                ),
+              ],
+            ),
+                body: Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  child: ListView.separated(
+                  physics: BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return buildArticleItem(list[index],context);
+                  },
+                  separatorBuilder: (context, index) {
+                    return separatedLine(context);
+                  },
+                  itemCount: NewsCubit.get(context).science.length),
+                ),
+              )
               : Center(
             child: CircularProgressIndicator(),
           );

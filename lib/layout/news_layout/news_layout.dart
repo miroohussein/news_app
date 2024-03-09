@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/module/search/search.dart';
 import 'package:news_app/shared/cubit/cubit.dart';
 import 'package:news_app/shared/cubit/states.dart';
 import 'package:news_app/shared/network/dio_helper.dart';
@@ -11,16 +12,15 @@ class NewsLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => NewsCubit()..getBusiness()..getSports()..getScience()..getAll(),
-      child: BlocConsumer<NewsCubit, NewsStates>(
+    return BlocConsumer<NewsCubit, NewsStates>(
         builder: (BuildContext context, state) {
-
           var cubit = NewsCubit.get(context);
           return Scaffold(
             appBar: AppBar(
               actions: [
-                IconButton(onPressed: (){},
+                IconButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> SearchScreen()));
+                },
                     icon:Icon(Icons.search)
                 ),
                 IconButton(
@@ -42,9 +42,9 @@ class NewsLayout extends StatelessWidget {
               onTap: (index) {
                 cubit.changeBottomNavBar(index);
               },
-
             ),
-            body: cubit.screens[cubit.currentindex],
+            //body: cubit.screens[cubit.currentindex],
+            body: cubit.mainScreens[cubit.currentindex],
             // floatingActionButton: Container(
             //   width: 50.0,
             //   height: 50.0,
@@ -64,7 +64,6 @@ class NewsLayout extends StatelessWidget {
           );
         },
         listener: (BuildContext context, Object? state) {},
-      ),
     );
   }
 }
