@@ -5,6 +5,8 @@ import 'package:news_app/shared/cubit/cubit.dart';
 import 'package:news_app/shared/cubit/states.dart';
 
 class BusinessScreen extends StatelessWidget {
+  const BusinessScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NewsCubit, NewsStates>(
@@ -13,7 +15,7 @@ class BusinessScreen extends StatelessWidget {
           return state is! NewsGetBusinessLoadingState
               ?  Scaffold(
             appBar: AppBar(
-              title: Text(
+              title: const Text(
                 'Business',
               ),
               actions: [
@@ -25,11 +27,11 @@ class BusinessScreen extends StatelessWidget {
                 ),
               ],
             ),
-                body: Container(
+                body: SizedBox(
                       height: double.infinity,
                       width: double.infinity,
                       child: ListView.separated(
-                          physics: BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           itemBuilder: (context, index) {
                             return buildArticleItem(list[index], context);
                           },
@@ -39,7 +41,7 @@ class BusinessScreen extends StatelessWidget {
                           itemCount: NewsCubit.get(context).business.length),
                   ),
               )
-              : Center(
+              : const Center(
                   child: CircularProgressIndicator(),
                 );
         },

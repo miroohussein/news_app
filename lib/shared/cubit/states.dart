@@ -3,7 +3,20 @@ abstract class AppStates {}
 class AppInitialState extends AppStates {}
 
 class AppThemeChangeState extends AppStates {}
+/////
 
+// class AppChangeBottomSheetState extends AppStates{}
+abstract class SearchStates {}
+class SearchInitialState extends SearchStates{}
+class NewsGetSearchSuccessState extends SearchStates {}
+
+class NewsGetSearchErrorState extends SearchStates {
+  final String errorSearch;
+
+  NewsGetSearchErrorState(this.errorSearch);
+}
+
+class NewsGetSearchLoadingState extends SearchStates {}
 // class AppChangeBottomNavBarState extends AppStates{}
 // class AppCreateDatabaseState extends AppStates{}
 // class AppGetDatabaseState extends AppStates{}
@@ -61,12 +74,12 @@ class NewsGetScienceErrorState extends NewsStates {
 class NewsGetScienceLoadingState extends NewsStates {}
 
 
-class NewsGetSearchSuccessState extends NewsStates {}
-
-class NewsGetSearchErrorState extends NewsStates {
-  final String errorSearch;
-
-  NewsGetSearchErrorState(this.errorSearch);
-}
-
-class NewsGetSearchLoadingState extends NewsStates {}
+// class NewsGetSearchSuccessState extends NewsStates {}
+//
+// class NewsGetSearchErrorState extends NewsStates {
+//   final String errorSearch;
+//
+//   NewsGetSearchErrorState(this.errorSearch);
+// }
+//
+// class NewsGetSearchLoadingState extends NewsStates {}

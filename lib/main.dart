@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/layout/home/home_screen.dart';
 import 'package:news_app/layout/news_layout/news_layout.dart';
-import 'package:news_app/module/business/business_screen.dart';
 import 'package:news_app/shared/bloc_observer/bloc_observer.dart';
-import 'package:news_app/shared/components/component.dart';
 import 'package:news_app/shared/cubit/cubit.dart';
 import 'package:news_app/shared/cubit/states.dart';
 import 'package:news_app/shared/network/cache_helper.dart';
 import 'package:news_app/shared/network/dio_helper.dart';
-
-import 'module/category/category_screeen.dart';
 
 void main() async {
   // insure that every method in the main finished then start running
@@ -27,7 +22,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final bool? isDark;
-  MyApp(this.isDark);
+  const MyApp(this.isDark, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,20 +30,21 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context)=> NewsCubit()..getBusiness()..getScience()..getSports()..getAll()),
         BlocProvider(create: (context)=>AppCubit()..changeAppTheme( fromShared: isDark )),
+        BlocProvider(create: (context)=>SearchCubit()),
       ],
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (BuildContext context, state) {
           return MaterialApp(
             theme: ThemeData(
-                textTheme: TextTheme(
-                    bodyText1: TextStyle(
+                textTheme:  TextTheme(
+                    bodyLarge: TextStyle(
                         color: Colors.black,
                         fontSize: 18.0,
                         fontWeight: FontWeight.w600)),
                 primarySwatch: Colors.grey,
                 scaffoldBackgroundColor: Colors.white,
-                appBarTheme: AppBarTheme(
+                appBarTheme:  AppBarTheme(
                   iconTheme: IconThemeData(color: Colors.black),
                   titleTextStyle: TextStyle(
                       color: Colors.black,
@@ -60,7 +56,7 @@ class MyApp extends StatelessWidget {
                       statusBarBrightness: Brightness.dark),
                   elevation: 0.0,
                 ),
-                floatingActionButtonTheme: FloatingActionButtonThemeData(
+                floatingActionButtonTheme:  FloatingActionButtonThemeData(
                     backgroundColor: Colors.black),
                 bottomNavigationBarTheme: BottomNavigationBarThemeData(
                   backgroundColor: Colors.white,
@@ -69,15 +65,15 @@ class MyApp extends StatelessWidget {
                   selectedItemColor: Colors.black,
                 )),
             darkTheme: ThemeData(
-                textTheme: TextTheme(
-                    bodyText1: TextStyle(
+                textTheme:  TextTheme(
+                    bodyLarge: TextStyle(
                         color: Colors.white,
                         fontSize: 18.0,
                         fontWeight: FontWeight.w600)),
                 scaffoldBackgroundColor: Colors.black45,
-                floatingActionButtonTheme: FloatingActionButtonThemeData(
+                floatingActionButtonTheme:  FloatingActionButtonThemeData(
                     backgroundColor: Colors.white),
-                appBarTheme: AppBarTheme(
+                appBarTheme:  AppBarTheme(
                   iconTheme: IconThemeData(color: Colors.white),
                   titleTextStyle: TextStyle(
                       color: Colors.white,
@@ -99,7 +95,7 @@ class MyApp extends StatelessWidget {
                 AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
             debugShowCheckedModeBanner: false,
             home://Categoryscreen(),
-            NewsLayout(),
+             NewsLayout(),
           );
         },
       ),

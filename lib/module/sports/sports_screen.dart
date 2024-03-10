@@ -6,6 +6,8 @@ import '../../shared/cubit/cubit.dart';
 import '../../shared/cubit/states.dart';
 
 class SportsScreen extends StatelessWidget {
+  const SportsScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class SportsScreen extends StatelessWidget {
           return state is! NewsGetSportsLoadingState
               ? Scaffold(
             appBar: AppBar(
-              title: Text(
+              title: const Text(
                 'Sports',
               ),
               actions: [
@@ -27,11 +29,11 @@ class SportsScreen extends StatelessWidget {
                 ),
               ],
             ),
-                body: Container(
+                body: SizedBox(
                   height: double.infinity,
                   width: double.infinity,
                   child: ListView.separated(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
                     return buildArticleItem(list[index],context);
                   },
@@ -41,7 +43,7 @@ class SportsScreen extends StatelessWidget {
                   itemCount: NewsCubit.get(context).sports.length),
                 ),
               )
-              : Center(
+              : const Center(
             child: CircularProgressIndicator(),
           );
         },

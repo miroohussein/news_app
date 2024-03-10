@@ -1,11 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/module/search/search.dart';
 import 'package:news_app/shared/cubit/cubit.dart';
 import 'package:news_app/shared/cubit/states.dart';
-import 'package:news_app/shared/network/dio_helper.dart';
 
-import '../../shared/components/component.dart';
 
 class NewsLayout extends StatelessWidget {
   const NewsLayout({super.key});
@@ -19,9 +18,9 @@ class NewsLayout extends StatelessWidget {
             appBar: AppBar(
               actions: [
                 IconButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> SearchScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>  SearchScreen()));
                 },
-                    icon:Icon(Icons.search)
+                    icon: Icon(Icons.search)
                 ),
                 IconButton(
                   icon: AppCubit.get(context).icon,
@@ -30,9 +29,9 @@ class NewsLayout extends StatelessWidget {
                     },
                 ),
               ],
-              title: Text('JAREEDAH'),
+              title:  Text('JAREEDAH'),
               leading: IconButton(
-                icon: Icon(Icons.menu),
+                icon:  Icon(Icons.menu),
                 onPressed: () {},
               ),
             ),

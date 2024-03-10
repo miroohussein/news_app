@@ -6,6 +6,8 @@ import '../../shared/cubit/cubit.dart';
 import '../../shared/cubit/states.dart';
 
 class ScienceScreen extends StatelessWidget {
+  const ScienceScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class ScienceScreen extends StatelessWidget {
           return state is! NewsGetScienceLoadingState
               ? Scaffold(
             appBar: AppBar(
-              title: Text(
+              title: const Text(
                 'Science',
               ),
               actions: [
@@ -27,11 +29,11 @@ class ScienceScreen extends StatelessWidget {
                 ),
               ],
             ),
-                body: Container(
+                body: SizedBox(
                   height: double.infinity,
                   width: double.infinity,
                   child: ListView.separated(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
                     return buildArticleItem(list[index],context);
                   },
@@ -41,7 +43,7 @@ class ScienceScreen extends StatelessWidget {
                   itemCount: NewsCubit.get(context).science.length),
                 ),
               )
-              : Center(
+              : const Center(
             child: CircularProgressIndicator(),
           );
         },

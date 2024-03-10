@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +18,7 @@ class NewsHomeScreen extends StatelessWidget {
         var list = NewsCubit.get(context).totalData;
         return state is! NewsGetTotalDataLoadingState
             ? Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding:  EdgeInsets.all(16.0),
               child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,6 +35,7 @@ class NewsHomeScreen extends StatelessWidget {
                                     WebViewScreen(list[1]['url'])));
                       },
                       child: Stack(
+                        alignment: Alignment.bottomCenter,
                         children: [
                           Container(
                             child: Image.network(
@@ -42,11 +44,11 @@ class NewsHomeScreen extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            color: Color(0xFFFFFFFF).withOpacity(0.5),
+                            color:  Color(0xFFFFFFFF).withOpacity(0.5),
                           ),
                           Text(
                             '${list[1]['title']}',
-                            style: TextStyle(
+                            style:  TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.black),
@@ -55,25 +57,25 @@ class NewsHomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 10.0,
+                   SizedBox(
+                    height: 20.0,
                   ),
                   Container(
 
-                    child: Text(
-                      "Trending.",
+                    child:  Text(
+                      "Trending..",
                       style:
                           TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.start,
                     ),
                   ),
-                  SizedBox(
-                    height: 10.0,
+                   SizedBox(
+                    height: 20.0,
                   ),
                   Expanded(
                     child: ListView.separated(
                         shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) {
                           return buildArticleItem(list[index], context);
                         },
@@ -84,7 +86,7 @@ class NewsHomeScreen extends StatelessWidget {
                   ),
                 ]),
             )
-            : Center(
+            :  Center(
                 child: CircularProgressIndicator(),
               );
       },

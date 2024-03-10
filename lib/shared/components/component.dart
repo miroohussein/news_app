@@ -130,7 +130,6 @@
 //   );
 // }
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/module/web_view/web_view.dart';
 import 'package:news_app/shared/cubit/cubit.dart';
@@ -141,7 +140,7 @@ Widget buildArticleItem(article , context){
       Navigator.push(context, MaterialPageRoute(builder: (context)=> WebViewScreen(article['url'])));
     },
     child: Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding:  EdgeInsets.all(20.0),
       child: Row(
         children: [
           Container(
@@ -155,11 +154,11 @@ Widget buildArticleItem(article , context){
                 )
             ),
           ),
-          SizedBox(
+           SizedBox(
             width: 20.0,
           ),
           Expanded(
-            child: Container(
+            child: SizedBox(
               height: 120.0,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -168,9 +167,9 @@ Widget buildArticleItem(article , context){
                 children: [
                   Text("${article['title']}",
                     maxLines: 3,
-                    style: Theme.of(context).textTheme.bodyText1 ,),
+                    style: Theme.of(context).textTheme.bodyLarge ,),
                   Text('${article['publishedAt']}',
-                    style: TextStyle(
+                    style:  TextStyle(
                       fontSize: 18.0,
                       color: Colors.grey,
 
@@ -187,7 +186,7 @@ Widget buildArticleItem(article , context){
 
 Widget separatedLine(context){
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+    padding:  EdgeInsets.symmetric(horizontal: 8.0),
     child: Container(
         color: AppCubit.get(context).isDark? Colors.grey[900]:Colors.grey[300],
         height: 2.0,

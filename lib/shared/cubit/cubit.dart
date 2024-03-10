@@ -121,8 +121,6 @@
 //   }
 // }
 
-import 'package:bloc/bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/layout/home/home_screen.dart';
@@ -136,7 +134,6 @@ import 'package:news_app/module/sports/sports_screen.dart';
 import 'package:news_app/shared/cubit/states.dart';
 import 'package:news_app/shared/network/cache_helper.dart';
 
-import '../components/component.dart';
 import '../network/dio_helper.dart';
 
 class NewsCubit extends Cubit<NewsStates> {
@@ -145,6 +142,7 @@ class NewsCubit extends Cubit<NewsStates> {
   static NewsCubit get(context) => BlocProvider.of(context);
 
   int currentindex = 0;
+
 /*  List<BottomNavigationBarItem> bottomItem = [
     BottomNavigationBarItem(
       label: 'Business',
@@ -173,25 +171,25 @@ class NewsCubit extends Cubit<NewsStates> {
   ];*/
 
   List<BottomNavigationBarItem> bottomItem = [
-    BottomNavigationBarItem(
+     BottomNavigationBarItem(
       label: 'Home',
       icon: Icon(
         Icons.home,
       ),
     ),
-    BottomNavigationBarItem(
+     BottomNavigationBarItem(
       label: 'Category',
       icon: Icon(
         Icons.category,
       ),
     ),
-    BottomNavigationBarItem(
+     BottomNavigationBarItem(
       label: 'Bookmark',
       icon: Icon(
         Icons.bookmarks_rounded,
       ),
     ),
-    BottomNavigationBarItem(
+     BottomNavigationBarItem(
       label: 'Profile',
       icon: Icon(
         Icons.person_3_rounded,
@@ -199,16 +197,16 @@ class NewsCubit extends Cubit<NewsStates> {
     ),
   ];
   List<Widget> screens = [
-    BusinessScreen(),
-    SportsScreen(),
-    ScienceScreen(),
-    SettingsScreen(),
+     BusinessScreen(),
+     SportsScreen(),
+     ScienceScreen(),
+     SettingsScreen(),
   ];
   List<Widget> mainScreens = [
-    NewsHomeScreen(),
-    Categoryscreen(),
-    BookmarkScreen(),
-    ProfileScreen(),
+     NewsHomeScreen(),
+     Categoryscreen(),
+     BookmarkScreen(),
+     ProfileScreen(),
   ];
 
   void changeBottomNavBar(int index) {
@@ -219,7 +217,7 @@ class NewsCubit extends Cubit<NewsStates> {
   List<dynamic> business = [];
   List<dynamic> sports = [];
   List<dynamic> science = [];
-  List<dynamic> search = [];
+  // List<dynamic> search = [];
   List<dynamic> totalData = [];
 
   void getBusiness() {
@@ -282,22 +280,20 @@ class NewsCubit extends Cubit<NewsStates> {
     });
   }
 
-  void getSearch(String value) {
-    emit(NewsGetSearchLoadingState());
-   search = [];
-   DioHelper.gtData(url:'v2/everything', query: {
-     'q':'$value',
-     'apiKey':'bb828cd18aeb42f5afb50e816a05215f',
-   }).then((value) {
-     search = value.data['articles'];
-     print(search[0]['title']);
-
-     emit(NewsGetSearchSuccessState());
-   }).catchError((onError){
-     print(onError.toString());
-     emit(NewsGetSearchErrorState(onError));
-   });
-  }
+  // void getSearch(String value) {
+  //   emit(NewsGetSearchLoadingState());
+  //   DioHelper.gtData(url: 'v2/everything', query: {
+  //     'q': value,
+  //     'apiKey': 'bb828cd18aeb42f5afb50e816a05215f',
+  //   }).then((value) {
+  //     search = value.data['articles'];
+  //     print(search[0]['title']);
+  //     emit(NewsGetSearchSuccessState());
+  //   }).catchError((onError) {
+  //     print(onError.toString());
+  //     emit(NewsGetSearchErrorState(onError));
+  //   });
+  // }
 
   void getAll() {
     emit(NewsGetTotalDataLoadingState());
@@ -325,14 +321,39 @@ class AppCubit extends Cubit<AppStates> {
   static AppCubit get(context) => BlocProvider.of(context);
 
   bool isDark = false;
-  var icon = Icon(Icons.brightness_2_outlined);
+  var icon = const Icon(Icons.brightness_2_outlined);
 
   void changeAppTheme({bool? fromShared}) {
-    if (fromShared != null)
+    if (fromShared != null) {
       isDark = fromShared;
-    else
+    } else {
       isDark = !isDark;
+    }
     CacheHelper.putData(key: 'isDark', value: isDark)
         .then((value) => emit(AppThemeChangeState()));
   }
 }
+
+
+
+class SearchCubit extends Cubit<SearchStates> {
+  SearchCubit() : super(SearchInitialState());
+  List<dynamic> search = [];
+  static SearchCubit get(context) => BlocProvider.of(context);
+
+  void getSearch(String value) {
+    emit(NewsGetSearchLoadingState());
+    DioHelper.gtData(url: 'v2/everything', query: {
+      'q': "$value",
+      'apiKey': 'bb828cd18aeb42f5afb50e816a05215f',
+    }).then((value) {
+      search = value.data['articles'];
+      print(search[0]['title']);
+      emit(NewsGetSearchSuccessState());
+    }).catchError((onError) {
+      print(onError.toString());
+      emit(NewsGetSearchErrorState(onError));
+    });
+  }
+  }
+

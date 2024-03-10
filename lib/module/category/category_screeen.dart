@@ -31,17 +31,17 @@ class Categoryscreen extends StatelessWidget {
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 0,
                             blurRadius: 4,
-                            offset: Offset(0,4),
+                            offset: const Offset(0,4),
                           ),]
                         ),
                         child:ElevatedButton(
                           onPressed: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) =>  BusinessScreen()),
+                              MaterialPageRoute(builder: (context) =>  const BusinessScreen()),
                             );
                           },
-                          child: Center(
+                          child: const Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,7 +68,7 @@ class Categoryscreen extends StatelessWidget {
                         ),
 
                       ),
-                      SizedBox(width: 50.0,),
+                      const SizedBox(width: 50.0,),
                       Container(
                         width: 150.0,
                         height: 150.0,
@@ -79,17 +79,17 @@ class Categoryscreen extends StatelessWidget {
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 0,
                             blurRadius: 4,
-                            offset: Offset(0,4),
+                            offset: const Offset(0,4),
                           ),]
                         ),
                         child:ElevatedButton(
                           onPressed: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) =>  ScienceScreen()),
+                              MaterialPageRoute(builder: (context) =>  const ScienceScreen()),
                             );
                           },
-                          child: Center(
+                          child: const Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -118,7 +118,7 @@ class Categoryscreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height:30.0),
+                  const SizedBox(height:30.0),
                   Row(
                     children: [
                       Container(
@@ -131,17 +131,17 @@ class Categoryscreen extends StatelessWidget {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 0,
                               blurRadius: 4,
-                              offset: Offset(0,4),
+                              offset: const Offset(0,4),
                             ),]
                         ),
                         child:ElevatedButton(
                           onPressed: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => SportsScreen()),
+                              MaterialPageRoute(builder: (context) => const SportsScreen()),
                             );
                           },
-                          child: Center(
+                          child: const Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -168,7 +168,7 @@ class Categoryscreen extends StatelessWidget {
                         ),
 
                       ),
-                      SizedBox(width: 50.0,),
+                      const SizedBox(width: 50.0,),
                       Container(
                         width: 150.0,
                         height: 150.0,
@@ -179,12 +179,12 @@ class Categoryscreen extends StatelessWidget {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 0,
                               blurRadius: 4,
-                              offset: Offset(0,4),
+                              offset: const Offset(0,4),
                             ),]
                         ),
                         child:ElevatedButton(
                           onPressed: (){},
-                          child: Center(
+                          child: const Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -213,7 +213,7 @@ class Categoryscreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height:30.0),
+                  const SizedBox(height:30.0),
                   Row(
                     children: [
                       Container(
@@ -226,12 +226,12 @@ class Categoryscreen extends StatelessWidget {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 0,
                               blurRadius: 4,
-                              offset: Offset(0,4),
+                              offset: const Offset(0,4),
                             ),]
                         ),
                         child:ElevatedButton(
                           onPressed: (){},
-                          child: Center(
+                          child: const Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -258,7 +258,7 @@ class Categoryscreen extends StatelessWidget {
                         ),
 
                       ),
-                      SizedBox(width: 50.0,),
+                      const SizedBox(width: 50.0,),
                       Container(
                         width: 150.0,
                         height: 150.0,
@@ -269,12 +269,12 @@ class Categoryscreen extends StatelessWidget {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 0,
                               blurRadius: 4,
-                              offset: Offset(0,4),
+                              offset: const Offset(0,4),
                             ),]
                         ),
                         child:ElevatedButton(
                           onPressed: (){},
-                          child: Center(
+                          child: const Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -303,7 +303,7 @@ class Categoryscreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height:30.0),
+                  const SizedBox(height:30.0),
                   Row(
                     children: [
                       Container(
@@ -316,12 +316,12 @@ class Categoryscreen extends StatelessWidget {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 0,
                               blurRadius: 4,
-                              offset: Offset(0,4),
+                              offset: const Offset(0,4),
                             ),]
                         ),
                         child:ElevatedButton(
                           onPressed: (){},
-                          child: Center(
+                          child: const Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -348,7 +348,7 @@ class Categoryscreen extends StatelessWidget {
                         ),
 
                       ),
-                      SizedBox(width: 50.0,),
+                      const SizedBox(width: 50.0,),
                       Container(
                         width: 150.0,
                         height: 150.0,
@@ -359,12 +359,12 @@ class Categoryscreen extends StatelessWidget {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 0,
                               blurRadius: 4,
-                              offset: Offset(0,4),
+                              offset: const Offset(0,4),
                             ),]
                         ),
                         child:ElevatedButton(
                           onPressed: (){},
-                          child: Center(
+                          child: const Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
