@@ -35,6 +35,10 @@ class Categoryscreen extends StatelessWidget {
                           ),]
                         ),
                         child:ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateColor.resolveWith((states) => Colors.white),
+                            elevation:MaterialStateProperty.all(0.0),
+                          ),
                           onPressed: (){
                             Navigator.push(
                               context,
@@ -83,6 +87,10 @@ class Categoryscreen extends StatelessWidget {
                           ),]
                         ),
                         child:ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateColor.resolveWith((states) => Colors.white),
+                            elevation:MaterialStateProperty.all(0.0),
+                          ),
                           onPressed: (){
                             Navigator.push(
                               context,
@@ -131,17 +139,22 @@ class Categoryscreen extends StatelessWidget {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 0,
                               blurRadius: 4,
-                              offset: const Offset(0,4),
+                              offset:  Offset(0,4),
                             ),]
                         ),
                         child:ElevatedButton(
+
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateColor.resolveWith((states) => Colors.white),
+                            elevation:MaterialStateProperty.all(0.0),
+                          ),
                           onPressed: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const SportsScreen()),
+                              MaterialPageRoute(builder: (context) =>  SportsScreen()),
                             );
                           },
-                          child: const Center(
+                          child:  Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -183,6 +196,10 @@ class Categoryscreen extends StatelessWidget {
                             ),]
                         ),
                         child:ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateColor.resolveWith((states) => Colors.white),
+                            elevation:MaterialStateProperty.all(0.0),
+                          ),
                           onPressed: (){},
                           child: const Center(
                             child: Column(
@@ -190,7 +207,7 @@ class Categoryscreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children:[
                                 Icon(
-                                  Icons.color_lens,
+                                  Icons.brush_sharp,
                                   color: Colors.black,
                                   size: 36.0,
                                 ),
@@ -230,6 +247,10 @@ class Categoryscreen extends StatelessWidget {
                             ),]
                         ),
                         child:ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateColor.resolveWith((states) => Colors.white),
+                            elevation:MaterialStateProperty.all(0.0),
+                          ),
                           onPressed: (){},
                           child: const Center(
                             child: Column(
@@ -273,6 +294,10 @@ class Categoryscreen extends StatelessWidget {
                             ),]
                         ),
                         child:ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateColor.resolveWith((states) => Colors.white),
+                            elevation:MaterialStateProperty.all(0.0),
+                          ),
                           onPressed: (){},
                           child: const Center(
                             child: Column(
@@ -320,6 +345,10 @@ class Categoryscreen extends StatelessWidget {
                             ),]
                         ),
                         child:ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateColor.resolveWith((states) => Colors.white),
+                            elevation:MaterialStateProperty.all(0.0),
+                          ),
                           onPressed: (){},
                           child: const Center(
                             child: Column(
@@ -363,6 +392,10 @@ class Categoryscreen extends StatelessWidget {
                             ),]
                         ),
                         child:ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateColor.resolveWith((states) => Colors.white),
+                            elevation:MaterialStateProperty.all(0.0),
+                          ),
                           onPressed: (){},
                           child: const Center(
                             child: Column(
@@ -370,7 +403,7 @@ class Categoryscreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children:[
                                 Icon(
-                                  Icons.cookie,
+                                  Icons.blender,
                                   color: Colors.black,
                                   size: 36.0,
                                 ),
